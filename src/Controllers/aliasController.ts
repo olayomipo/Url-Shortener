@@ -15,19 +15,19 @@ export let GetUrl = (req: Request, res: Response) => {
 }
 // -@POST -/ post a new alias and get a new url
 export let PostUrl = async (req: Request, res: Response) => {
-    let url: any = new Url(req.body);
 
-     await url.save((err: any) => {
-            if(err) {
-              res.send(err)
-            } else {
-                // const suburi: any = url.url 
-                // res.redirect(suburi)
-                res.send(url)
-            }
-        })
-          // /:alias => res.redirect ( url )
-        // res.redirect(url)
+    try {
+        let url: any = new Url(req.body);
+
+        await url.save()
+
+        res.send(url)
+
+        
+    } catch (err) {
+        res.send(err)
+        console.error(err)
+   }
 }
 // -@GET -/:alias get a url by alias
 export let GetUrlALias = async (req: Request, res: Response) => {
@@ -46,5 +46,41 @@ export let GetUrlALias = async (req: Request, res: Response) => {
         res.redirect('/url')
     }
 
-    // .lean()
+}
+
+// -@PUT -/:alias get a url by id and update it by { the url } 
+export let PutUrlAlias = async (req: Request, res: Response) => {
+    try {
+
+        let url: any = await Url.findOneAndUpdate({ alias: req.params.alias} ,
+            { url: req.body.url}, { new: true } );
+        if (!url) {
+            res.status(404).send('There is no url with the given alias')
+        } else {
+            res.send(url)
+            // const suburi: any = url.url 
+            // res.redirect(suburi)
+        }
+    
+    } catch (err: any) {
+        console.error(err)
+        // err.details[0].message
+        res.status(500).send(err)
+    }
+}
+
+// -@DELETE -/:alias delete a url by alias 
+export let DeleteUrlAlias = async (req: Request, res: Response) => {
+    try {
+        let url: any = await Url.findOneAndDelete({ alias: req.params.alias})
+
+        if (!url) {
+            res.status(404).send('The movie with the given alais was not found...');
+        } else {
+        res.send(url)
+        }
+    } catch (err) {
+        console.error(err)
+        res.status(500).send(err)
+    }
 }

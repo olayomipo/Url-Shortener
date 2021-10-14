@@ -33,6 +33,8 @@ app.set("port", process.env.PORT || 5500);
 app.get('/url', alias.GetUrl);
 app.post('/', alias.PostUrl);
 app.get('/:alias', alias.GetUrlALias);
+app.put('/:alias', alias.PutUrlAlias);
+app.delete('/:alias', alias.DeleteUrlAlias);
 app.get('/test', (req, res) => res.send('Hello World'));
 const PORT = app.get('port');
 app.listen(PORT, () => {

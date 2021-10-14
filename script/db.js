@@ -19,7 +19,7 @@ function connectDB() {
 exports.connectDB = connectDB;
 exports.UrlSchema = new mongoose_1.default.Schema({
     url: { type: String, required: true },
-    alias: { type: String, required: true, unique: true }
+    alias: { type: String, required: true }
 }, { timestamps: true });
 const Url = mongoose_1.default.model("Url", exports.UrlSchema);
 exports.default = Url;
