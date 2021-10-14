@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PostUrl = exports.GetUrl = void 0;
+exports.GetUrlALias = exports.PostUrl = exports.GetUrl = void 0;
 const db_1 = __importDefault(require("../db"));
 // - @GET - /url get all urls and alias 
 let GetUrl = (req, res) => {
@@ -26,7 +26,7 @@ let GetUrl = (req, res) => {
     });
 };
 exports.GetUrl = GetUrl;
-// -@POST -/url post a new alias and get a new url
+// -@POST -/ post a new alias and get a new url
 let PostUrl = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     let url = new db_1.default(req.body);
     yield url.save((err) => {
@@ -43,3 +43,23 @@ let PostUrl = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     // res.redirect(url)
 });
 exports.PostUrl = PostUrl;
+// -@GET -/:alias get a url by alias
+let GetUrlALias = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        let url = yield db_1.default.findOne({ alias: req.params.alias });
+        if (!url) {
+            res.status(404).send('There is no url with the given alias');
+        }
+        else {
+            const suburi = url.url;
+            res.redirect(suburi);
+            // res.send(url)
+        }
+    }
+    catch (err) {
+        res.send(err);
+        res.redirect('/url');
+    }
+    // .lean()
+});
+exports.GetUrlALias = GetUrlALias;

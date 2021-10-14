@@ -12,7 +12,8 @@ app.use(express.json());
 app.set("port", process.env.PORT || 5500);
 
 app.get('/url', alias.GetUrl);
-app.post('/url', alias.PostUrl);
+app.post('/', alias.PostUrl);
+app.get('/:alias', alias.GetUrlALias)
 
 app.get('/test', (req : any, res: any) => res.send('Hello World'))
 

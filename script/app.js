@@ -31,7 +31,8 @@ const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.set("port", process.env.PORT || 5500);
 app.get('/url', alias.GetUrl);
-app.post('/url', alias.PostUrl);
+app.post('/', alias.PostUrl);
+app.get('/:alias', alias.GetUrlALias);
 app.get('/test', (req, res) => res.send('Hello World'));
 const PORT = app.get('port');
 app.listen(PORT, () => {
