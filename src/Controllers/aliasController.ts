@@ -16,13 +16,16 @@ export let GetUrl = (req: Request, res: Response) => {
 // -@POST -/url post a new alias and get a new url
 export let PostUrl = async (req: Request, res: Response) => {
     let url : any = new Url(req.body);
-
+    
      await url.save((err: any) => {
             if(err) {
-                res.send(err)
+              res.send(err)
             } else {
+                // const suburi: any = url.url 
+                // res.redirect(suburi)
                 res.send(url)
             }
         })
-
+          // /:alias => res.redirect ( url )
+        // res.redirect(url)
 }

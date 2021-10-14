@@ -34,8 +34,12 @@ let PostUrl = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             res.send(err);
         }
         else {
+            // const suburi: any = url.url 
+            // res.redirect(suburi)
             res.send(url);
         }
     });
+    // /:alias => res.redirect ( url )
+    // res.redirect(url)
 });
 exports.PostUrl = PostUrl;
