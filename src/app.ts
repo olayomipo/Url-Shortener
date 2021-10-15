@@ -1,17 +1,21 @@
 
 import express  from 'express'
-import { connectDB } from './db';
+import { connectDB } from './db'
 import * as alias from './Controllers/aliasController'
+import favicon from 'serve-favicon'
+import path from 'path'
 
 connectDB()
 
 const app: any = express()
- 
+
 // Our Express APP config
 app.use(express.json());
 app.set("port", process.env.PORT || 5500);
+app.use(favicon(path.join(__dirname, '../public','images', 'favicon.ico')))
 
-app.get('/url', alias.GetUrl);
+
+app.get('/', alias.GetUrl);
 app.post('/', alias.PostUrl);
 app.get('/:alias', alias.GetUrlALias)
 app.put('/:alias', alias.PutUrlAlias)

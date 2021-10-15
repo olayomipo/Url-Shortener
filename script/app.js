@@ -25,12 +25,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const db_1 = require("./db");
 const alias = __importStar(require("./Controllers/aliasController"));
+const serve_favicon_1 = __importDefault(require("serve-favicon"));
+const path_1 = __importDefault(require("path"));
 (0, db_1.connectDB)();
 const app = (0, express_1.default)();
 // Our Express APP config
 app.use(express_1.default.json());
 app.set("port", process.env.PORT || 5500);
-app.get('/url', alias.GetUrl);
+app.use((0, serve_favicon_1.default)(path_1.default.join(__dirname, '../public', 'images', 'favicon.ico')));
+app.get('/', alias.GetUrl);
 app.post('/', alias.PostUrl);
 app.get('/:alias', alias.GetUrlALias);
 app.put('/:alias', alias.PutUrlAlias);
