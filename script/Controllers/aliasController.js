@@ -15,16 +15,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.DeleteUrlAlias = exports.PutUrlAlias = exports.GetUrlALias = exports.PostUrl = exports.GetUrl = void 0;
 const db_1 = __importDefault(require("../db"));
 // - @GET - /url get all urls and alias 
-let GetUrl = (req, res) => {
-    let url = db_1.default.find((err, uri) => {
-        if (err) {
-            res.send(err);
-        }
-        else {
-            res.send(uri);
-        }
-    });
-};
+let GetUrl = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const url = yield db_1.default.find().lean();
+        let uri = url;
+        res.render('Urls', { uri });
+    }
+    catch (err) {
+        console.error(err);
+    }
+});
 exports.GetUrl = GetUrl;
 // -@POST -/ post a new alias and get a new url
 let PostUrl = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -61,7 +61,7 @@ exports.GetUrlALias = GetUrlALias;
 // -@PUT -/:alias get a url by id and update it by { the url } 
 let PutUrlAlias = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        let url = yield db_1.default.findOneAndUpdate({ alias: req.params.alias }, { url: req.body.url }, { new: true });
+        let url = yield db_1.default.findOneAndUpdate({ alias: req.params.alias }, { url: req.body.url, name: req.body.name }, { new: true });
         if (!url) {
             res.status(404).send('There is no url with the given alias');
         }

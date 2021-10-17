@@ -1,0 +1,43 @@
+
+
+<h4> Url's Shortener List of registered urls</h4>
+{{!-- <h3> Welcome {{name}}</h3>
+<p><b> Here are your stories </b></p> --}}
+{{#if uri}}
+   <table class=" pink text-darken-3 striped ">
+       <thead>
+           <tr>
+               <th>Name</th>    
+               <th>Alias</th>
+               <th>Url</th>
+               <th>Created at </th>
+               <th>Updated at </th>
+           </tr>
+       </thead>
+       <tbody>
+           {{#each uri}}
+           <tr>
+
+               <td><span class="dash-status"><a href="/{{alias}}" class="waves-effect waves-light purple-text text-darken-3 ">{{name}}</a></span></td>
+               <td><span class="dash-status">{{alias}}</span></td>
+               <td><span class="dash-status">{{url}}</span></td>
+               <td><span class="dash-status">{{formatDate createdAt 'MMMM Do YYYY, h:mm:ss a'}}</span></td>
+               <td><span class="dash-status">{{formatDate updatedAt 'MMMM Do YYYY, h:mm:ss a'}}</span></td>
+               <td>
+                   <a href="/{{alias}}" class=" btn btn-float ">
+                       <i class="fas fa-edit"></i>
+                   </a>
+                   {{!-- <form action="/{{alias}}" method="POST" id="delete-form">
+                      <input type="hidden" name="_method" value="DELETE">
+                      <button type="submit" class="btn red">
+                          <i class="fas fa-trash"></i>
+                      </button>
+                   </form> --}}
+               </td>
+
+            </tr>
+         {{/each}}
+
+{{else}}
+   <p> No registered urls yet</p>
+{{/if}}

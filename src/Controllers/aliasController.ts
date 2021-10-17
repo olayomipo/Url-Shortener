@@ -4,14 +4,16 @@ import Url from "../db";
 
 // - @GET - /url get all urls and alias 
 
-export let GetUrl = (req: Request, res: Response) => {
-    let url: any = Url.find((err: any, uri: any) => {
-        if(err) {
-            res.send(err)
-        } else {
-            res.send(uri)
-        }
-    })
+export let GetUrl = async (req: Request, res: Response) => {
+    try {
+        const url: any = await Url.find().lean()
+         let uri: any = url
+        res.render('Urls', { uri })
+
+    } catch (err) {
+        console.error(err)
+    }
+   
 }
 // -@POST -/ post a new alias and get a new url
 export let PostUrl = async (req: Request, res: Response) => {
@@ -53,7 +55,7 @@ export let PutUrlAlias = async (req: Request, res: Response) => {
     try {
 
         let url: any = await Url.findOneAndUpdate({ alias: req.params.alias} ,
-            { url: req.body.url}, { new: true } );
+            { url: req.body.url , name: req.body.name }, { new: true } );
         if (!url) {
             res.status(404).send('There is no url with the given alias')
         } else {
