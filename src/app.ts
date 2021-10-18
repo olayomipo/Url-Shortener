@@ -48,13 +48,15 @@ app.engine('.hbs', exphbs({
 
 app.set('view engine', '.hbs');
 
-app.get('/', alias.GetUrl);
+app.get('/', (req : any, res: any) => res.redirect('/home'))
+
+app.get('/home', alias.GetHome)
+app.get('/urls', alias.GetUrl);
 app.post('/', alias.PostUrl);
 app.get('/:alias', alias.GetUrlALias)
-app.put('/:alias', alias.PutUrlAlias)
-app.delete('/:alias', alias.DeleteUrlAlias)
+// app.put('/:alias', alias.PutUrlAlias)
+// app.delete('/:alias', alias.DeleteUrlAlias)
 
-app.get('/test', (req : any, res: any) => res.send('Hello World'))
 
  const PORT : any = app.get('port');
  app.listen( PORT, () => {

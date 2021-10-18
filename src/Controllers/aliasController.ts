@@ -1,5 +1,6 @@
 
 import { Request, Response } from "express";
+import { create } from "express-handlebars";
 import Url from "../db";
 
 // - @GET - /url get all urls and alias 
@@ -15,13 +16,23 @@ export let GetUrl = async (req: Request, res: Response) => {
     }
    
 }
+
+// - @GET - /home make a new url with auto generated alias
+
+export let GetHome = async (req: Request, res: Response) => {
+    try {
+        res.render('Home')
+
+    } catch (err) {
+        console.error(err)
+    }
+   
+}
 // -@POST -/ post a new alias and get a new url
 export let PostUrl = async (req: Request, res: Response) => {
 
     try {
-        let url: any = new Url(req.body);
-
-        await url.save()
+        let url: any = await Url.create(req.body);
 
         res.send(url)
 
@@ -50,39 +61,39 @@ export let GetUrlALias = async (req: Request, res: Response) => {
 
 }
 
-// -@PUT -/:alias get a url by id and update it by { the url } 
-export let PutUrlAlias = async (req: Request, res: Response) => {
-    try {
+// // -@PUT -/:alias get a url by id and update it by { the url } 
+// export let PutUrlAlias = async (req: Request, res: Response) => {
+//     try {
 
-        let url: any = await Url.findOneAndUpdate({ alias: req.params.alias} ,
-            { url: req.body.url , name: req.body.name }, { new: true } );
-        if (!url) {
-            res.status(404).send('There is no url with the given alias')
-        } else {
-            res.send(url)
-            // const suburi: any = url.url 
-            // res.redirect(suburi)
-        }
+//         let url: any = await Url.findOneAndUpdate({ alias: req.params.alias} ,
+//             { url: req.body.url , name: req.body.name }, { new: true } );
+//         if (!url) {
+//             res.status(404).send('There is no url with the given alias')
+//         } else {
+//             res.send(url)
+//             // const suburi: any = url.url 
+//             // res.redirect(suburi)
+//         }
     
-    } catch (err: any) {
-        console.error(err)
-        // err.details[0].message
-        res.status(500).send(err)
-    }
-}
+//     } catch (err: any) {
+//         console.error(err)
+//         // err.details[0].message
+//         res.status(500).send(err)
+//     }
+// }
 
-// -@DELETE -/:alias delete a url by alias 
-export let DeleteUrlAlias = async (req: Request, res: Response) => {
-    try {
-        let url: any = await Url.findOneAndDelete({ alias: req.params.alias})
+// // -@DELETE -/:alias delete a url by alias 
+// export let DeleteUrlAlias = async (req: Request, res: Response) => {
+//     try {
+//         let url: any = await Url.findOneAndDelete({ alias: req.params.alias})
 
-        if (!url) {
-            res.status(404).send('The movie with the given alais was not found...');
-        } else {
-        res.send(url)
-        }
-    } catch (err) {
-        console.error(err)
-        res.status(500).send(err)
-    }
-}
+//         if (!url) {
+//             res.status(404).send('The movie with the given alais was not found...');
+//         } else {
+//         res.send(url)
+//         }
+//     } catch (err) {
+//         console.error(err)
+//         res.status(500).send(err)
+//     }
+// }

@@ -56,12 +56,13 @@ app.engine('.hbs', (0, express_handlebars_1.default)({
     }, defaultLayout: 'main', extname: '.hbs'
 }));
 app.set('view engine', '.hbs');
-app.get('/', alias.GetUrl);
+app.get('/', (req, res) => res.redirect('/home'));
+app.get('/home', alias.GetHome);
+app.get('/urls', alias.GetUrl);
 app.post('/', alias.PostUrl);
 app.get('/:alias', alias.GetUrlALias);
-app.put('/:alias', alias.PutUrlAlias);
-app.delete('/:alias', alias.DeleteUrlAlias);
-app.get('/test', (req, res) => res.send('Hello World'));
+// app.put('/:alias', alias.PutUrlAlias)
+// app.delete('/:alias', alias.DeleteUrlAlias)
 const PORT = app.get('port');
 app.listen(PORT, () => {
     console.log(`App is running on port %d`, PORT);
