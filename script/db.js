@@ -6,7 +6,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UrlSchema = exports.connectDB = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
 const nanoid_1 = require("nanoid");
-const uri = "mongodb://localhost:27017/Url_Shortener";
+const url = "mongodb://localhost:27017/Url_Shortener";
+const uri = "mongodb+srv://Lily-Crown999:Lily-Crown999@cluster0.ynj90.mongodb.net/Url-Shortener?retryWrites=true&w=majority";
 function connectDB() {
     mongoose_1.default.connect(uri, (err) => {
         if (err) {

@@ -1,8 +1,8 @@
 
 
 {{#if uri}}
-    <div class="panel panel-default well well-lg">
-          <div class="panel-heading"><h4> Url's Shortener List of registered urls</h4></div>
+    <div class="teal lighten-4 green-text text-darken-4 panel panel-default well well-lg ">
+          <div class="panel-heading"><h4 class="amber-text lighten-2"><i> --------------------  List of registered urls ------------------ </i></h4></div>
    <table class=" table ">
        <thead class="">
            <tr>
@@ -17,7 +17,7 @@
            {{#each uri}}
            <tr>
 
-               <td><span><a href="/{{alias}}" class="text-green">{{name}}</a></span></td>
+               <td><span ><a href="/{{alias}}" class="blue-text darken-4">{{name}}</a></span></td>
                <td><span>{{alias}}</span></td>
                <td><span>{{url}}</span></td>
                <td><span>{{formatDate createdAt 'MMMM Do YYYY, h:mm:ss a'}}</span></td>

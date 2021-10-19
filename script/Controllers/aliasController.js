@@ -19,31 +19,35 @@ let GetUrl = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const url = yield db_1.default.find().lean();
         let uri = url;
-        res.render('Urls', { uri });
+        res.render('page/Urls', { uri });
     }
     catch (err) {
         console.error(err);
+        res.render('err/500');
     }
 });
 exports.GetUrl = GetUrl;
 // - @GET - /home make a new url with auto generated alias
 let GetHome = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        res.render('Home');
+        res.render('page/Home');
     }
     catch (err) {
         console.error(err);
+        res.render('err/500');
     }
 });
 exports.GetHome = GetHome;
 // -@POST -/ post a new alias and get a new url
 let PostUrl = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        let url = yield db_1.default.create(req.body);
-        res.send(url);
+        let uri = yield db_1.default.create(req.body);
+        res.render('page/Created', { uri });
     }
     catch (err) {
-        res.send(err);
+        res.render('err/400C', {
+            error: err
+        });
         console.error(err);
     }
 });
@@ -53,7 +57,7 @@ let GetUrlALias = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let url = yield db_1.default.findOne({ alias: req.params.alias });
         if (!url) {
-            res.status(404).send('There is no url with the given alias');
+            res.render('err/404');
         }
         else {
             const suburi = url.url;
@@ -62,8 +66,8 @@ let GetUrlALias = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         }
     }
     catch (err) {
-        res.send(err);
-        res.redirect('/url');
+        console.error(err);
+        res.render('err/500');
     }
 });
 exports.GetUrlALias = GetUrlALias;

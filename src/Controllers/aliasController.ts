@@ -1,6 +1,5 @@
 
 import { Request, Response } from "express";
-import { create } from "express-handlebars";
 import Url from "../db";
 
 // - @GET - /url get all urls and alias 
@@ -9,10 +8,12 @@ export let GetUrl = async (req: Request, res: Response) => {
     try {
         const url: any = await Url.find().lean()
          let uri: any = url
-        res.render('Urls', { uri })
+        res.render('page/Urls', { uri })
 
     } catch (err) {
+        
         console.error(err)
+        res.render('err/500')
     }
    
 }
@@ -21,24 +22,28 @@ export let GetUrl = async (req: Request, res: Response) => {
 
 export let GetHome = async (req: Request, res: Response) => {
     try {
-        res.render('Home')
+        res.render('page/Home')
 
     } catch (err) {
+
         console.error(err)
+        res.render('err/500')
     }
    
 }
 // -@POST -/ post a new alias and get a new url
 export let PostUrl = async (req: Request, res: Response) => {
 
+
     try {
-        let url: any = await Url.create(req.body);
+        let uri: any = await Url.create(req.body)
 
-        res.send(url)
-
+        res.render('page/Created', {uri})
         
-    } catch (err) {
-        res.send(err)
+    } catch (err ) {
+        res.render('err/400C', { 
+            error : err
+         })
         console.error(err)
    }
 }
@@ -48,15 +53,15 @@ export let GetUrlALias = async (req: Request, res: Response) => {
         let url: any = await Url.findOne({ alias: req.params.alias });
 
         if (!url) {
-            res.status(404).send('There is no url with the given alias')
+            res.render('err/404')
         } else {
              const suburi: any = url.url 
                 res.redirect(suburi)
             // res.send(url)
          }
     } catch (err) {
-        res.send(err)
-        res.redirect('/url')
+        console.error(err)
+        res.render('err/500')
     }
 
 }
