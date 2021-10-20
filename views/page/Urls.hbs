@@ -6,11 +6,13 @@
    <table class=" table ">
        <thead class="">
            <tr>
-               <th>Name</th>    
+               <th>Name</th>
+               <th>Short Url</th>    
                <th>Alias</th>
                <th>Url</th>
                <th>Created at </th>
                <th>Updated at </th>
+               
            </tr>
        </thead>
        <tbody>
@@ -18,10 +20,12 @@
            <tr>
 
                <td><span ><a href="/{{alias}}" class="blue-text darken-4">{{name}}</a></span></td>
+               <td><span class="purple-text darken-4"> urlshortenerz/{{alias}} </span></td>
                <td><span>{{alias}}</span></td>
                <td><span>{{url}}</span></td>
                <td><span>{{formatDate createdAt 'MMMM Do YYYY, h:mm:ss a'}}</span></td>
                <td><span>{{formatDate updatedAt 'MMMM Do YYYY, h:mm:ss a'}}</span></td>
+               
 
             </tr>
     </div>

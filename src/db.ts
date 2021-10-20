@@ -2,7 +2,7 @@
 import mongoose from "mongoose";
 import { nanoid } from "nanoid";
 const url = "mongodb://localhost:27017/Url_Shortener";
-const uri = "mongodb+srv://Lily-Crown999:Lily-Crown999@cluster0.ynj90.mongodb.net/Url-Shortener?retryWrites=true&w=majority"
+const uri = "mongodb+srv://Lily-Crown999:Lily-Crown999@cluster0.ynj90.mongodb.net/Url-Shortenerz?retryWrites=true&w=majority"
 
 export function connectDB() {
         mongoose.connect(uri, (err) => {

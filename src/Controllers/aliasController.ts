@@ -34,11 +34,12 @@ export let GetHome = async (req: Request, res: Response) => {
 // -@POST -/ post a new alias and get a new url
 export let PostUrl = async (req: Request, res: Response) => {
 
+    let pagelink: any = 'https://urlshortenerz/'
+
 
     try {
         let uri: any = await Url.create(req.body)
-
-        res.render('page/Created', {uri})
+        res.render('page/Created', {uri , pagelink: pagelink})
         
     } catch (err ) {
         res.render('err/400C', { 

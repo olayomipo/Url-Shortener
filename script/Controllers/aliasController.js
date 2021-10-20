@@ -40,9 +40,10 @@ let GetHome = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 exports.GetHome = GetHome;
 // -@POST -/ post a new alias and get a new url
 let PostUrl = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    let pagelink = 'https://urlshortenerz/';
     try {
         let uri = yield db_1.default.create(req.body);
-        res.render('page/Created', { uri });
+        res.render('page/Created', { uri, pagelink: pagelink });
     }
     catch (err) {
         res.render('err/400C', {
