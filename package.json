@@ -2,12 +2,12 @@
   "name": "url_shortener",
   "version": "1.0.0",
   "description": "",
-  "main": "script/app.js",
+  "main": "script/app.ts",
   "scripts": {
     "watch-ts": "tsc -w",
     "watch-node": "nodemon script/app.js",
     "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript, Node\" -c \"yello.bold, cyan.bold\" \"npm run watch-ts\" \"npm run watch-node\"",
-    "start": "node script/app.js"
+    "start": "node src/app.ts"
   },
   "keywords": [],
   "author": "",
@@ -15,17 +15,10 @@
   "dependencies": {
     "@types/express": "^4.17.13",
     "@types/express-handlebars": "^5.3.1",
-    "@types/method-override": "^0.0.32",
     "@types/moment": "^2.13.0",
     "@types/mongoose": "^5.11.97",
     "@types/nanoid": "^3.0.0",
     "@types/serve-favicon": "^2.5.3",
-    "express": "^4.17.1",
-    "express-handlebars": "^5.3.4",
-    "method-override": "^3.0.0",
-    "moment": "^2.29.1",
-    "mongoose": "^6.0.10",
-    "nanoid": "^3.1.30",
-    "serve-favicon": "^2.5.0"
+    "ts-node" : "^10.3.1"
   }
 }
