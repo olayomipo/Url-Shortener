@@ -1,18 +1,25 @@
+
+//type config configuration
 {
-  "compilerOptions": {
-    "target": "esnext",
-    "module": "commonjs",
-    "lib": [ "ES2018", "dom" ],
-    // "sourceMap": true,
-    "outDir": "./script", 
-    "strict": true, 
-    "strictNullChecks": true, 
-    "strictFunctionTypes": true, 
-    "noImplicitThis": true, 
-    "alwaysStrict": true, 
-    "noImplicitReturns": true, 
-    "noFallthroughCasesInSwitch": true,
-    "esModuleInterop": true,
-    "experimentalDecorators": true, 
-  }
+	"compilerOptions": {
+		"outDir": "script",
+		"target": "ESNext",
+		"module": "CommonJS",
+		"moduleResolution": "node",
+		"esModuleInterop": true,
+		"downlevelIteration": true,
+		"allowSyntheticDefaultImports": true,
+		"importHelpers": true,
+		"skipLibCheck": true,
+		"sourceMap": true,
+		"removeComments": true,
+		"noEmitOnError": true,
+		"strict": false,
+		"alwaysStrict": false,
+		"noImplicitAny": false,
+		"typeRoots": ["node_modules/@types/"]
+	},
+	"include": ["app.ts", "src/**/*.ts"],
+	"exclude": ["node_modules", "script"]
 }
+

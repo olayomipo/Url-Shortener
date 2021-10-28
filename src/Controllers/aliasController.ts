@@ -5,9 +5,9 @@ import Url from "../db";
 // - @GET - /url get all urls and alias 
 
 export let GetUrl = async (req: Request, res: Response) => {
+    
     try {
-        const url: any = await Url.find().lean()
-         let uri: any = url
+        const uri: any = await Url.find().lean()
         res.render('page/Urls', { uri })
 
     } catch (err) {
@@ -34,12 +34,12 @@ export let GetHome = async (req: Request, res: Response) => {
 // -@POST -/ post a new alias and get a new url
 export let PostUrl = async (req: Request, res: Response) => {
 
-    let pagelink: any = 'https://urlshortenerz/'
+    let pagelink: any = 'https://lowurl.herokuapp.com/'
 
 
     try {
         let uri: any = await Url.create(req.body)
-        res.render('page/Created', {uri , pagelink: pagelink})
+        res.render('page/Created', { pagelink, uri })
         
     } catch (err ) {
         res.render('err/400C', { 

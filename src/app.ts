@@ -2,10 +2,10 @@
 import express  from 'express'
 import exphbs from 'express-handlebars'
 import { connectDB } from './db'
-import * as alias from './Controllers/aliasController'
+import { GetHome, GetUrl, PostUrl, GetUrlALias } from './Controllers/aliasController'
 import favicon from 'serve-favicon'
 import path from 'path'
-
+import { asyncMiddleware } from "./middleware/async";
 
 connectDB()
 
@@ -15,18 +15,15 @@ const app: any = express()
 app.use(express.json());
 app.use(express.urlencoded({ extended: false}))
 
+//Routes
+app.get('/', asyncMiddleware(GetHome));
+app.get('/urls', asyncMiddleware(GetUrl));
+app.post('/', asyncMiddleware(PostUrl));
+app.get('/:alias', asyncMiddleware(GetUrlALias))
+// app.put('/:alias', PutUrlAlias)
+// app.delete('/:alias', DeleteUrlAlias)
 
-app.get('/', (req : any, res: any) => res.redirect('/home'))
-
-const gh : any = app.get('/home', alias.GetHome)
-app.get('/urls', alias.GetUrl);
-app.post('/create', alias.PostUrl);
-app.get('/:alias', alias.GetUrlALias)
-// app.put('/:alias', alias.PutUrlAlias)
-// app.delete('/:alias', alias.DeleteUrlAlias)
-
-app.set("port", process.env.PORT || 5500);
-app.use(favicon(path.join(__dirname, '../public','images', 'favicon.ico')))
+app.use(asyncMiddleware(favicon(path.join(__dirname, '../public','images', 'favicon.ico'))))
 
 
   // Hamdlebars helpers
@@ -49,7 +46,7 @@ app.set('view engine', '.hbs');
 
 
 
- const PORT : any = app.get('port');
+ const PORT : any = process.env.PORT || 5500 ;
  app.listen( PORT, () => {
      console.log(`App is running on port %d`, PORT)
  })
