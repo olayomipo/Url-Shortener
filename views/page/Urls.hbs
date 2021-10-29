@@ -1,9 +1,18 @@
 
 
+    {{!-- <div class=" teal lighten-4 green-text text-darken-4 panel panel-default well well-lg ">
+          <div class="panel-heading"><h4 class="amber-text lighten-2"><i> --------------------  List of registered urls ------------------ </i></h4></div> --}}
+          
+<div class="row ">
+    <div class=" table">
+             <i><a class="waves-effect waves-light green btn" href="/"> Shorten new Url </a> </i>  
+               <a class="waves-effect waves-light btn" href="/"> Go back to home </a>
+
+    </div>
+    <h4 class="amber-text lighten-4"> ---------------------- <a href="#!" class=""> <i class="teal-text ">  List of registered urls </i> </a> ----------------------- </h4>
+    
 {{#if uri}}
-    <div class="teal lighten-4 green-text text-darken-4 panel panel-default well well-lg ">
-          <div class="panel-heading"><h4 class="amber-text lighten-2"><i> --------------------  List of registered urls ------------------ </i></h4></div>
-   <table class=" table ">
+   <table class="light-green lighten-2 blue-text text-darken-2 striped">
        <thead class="">
            <tr>
                <th>Name</th>
@@ -11,7 +20,7 @@
                <th>Alias</th>
                <th>Url</th>
                <th>Created at </th>
-               <th>Updated at </th>
+               {{!-- <th>Updated at </th> --}}
                
            </tr>
        </thead>
@@ -24,13 +33,15 @@
                <td><span>{{alias}}</span></td>
                <td><span>{{url}}</span></td>
                <td><span>{{formatDate createdAt 'MMMM Do YYYY, h:mm:ss a'}}</span></td>
-               <td><span>{{formatDate updatedAt 'MMMM Do YYYY, h:mm:ss a'}}</span></td>
+               {{!-- <td><span>{{formatDate updatedAt 'MMMM Do YYYY, h:mm:ss a'}}</span></td> --}}
                
 
             </tr>
-    </div>
          {{/each}}
 
 {{else}}
    <p> No registered urls yet</p>
 {{/if}}
+
+
+       </div>

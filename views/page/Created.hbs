@@ -1,11 +1,15 @@
 
-<div class="col s12 m7">
+<div class="row">
+                <a class="waves-effect waves-light btn" href="/"> Go back to home </a>
+
+    <h4 class="amber-text lighten-4">  Sucessfully created url  </h4>
+
+    <div class="col s12 m7">
     
 {{#if uri}}
   <div class="row">
-       <div class="teal lighten-4 green-text text-darken-4 panel panel-default well well-lg ">
-          <div class="panel-heading"><h4 class="amber-text lighten-2"><i> --------------  Sucessfully created url ------------- </i></h4></div>
-   <table class=" table ">
+          {{!-- <div class="panel-heading"><h4 class="amber-text lighten-2"><i> --------------  Sucessfully created url ------------- </i></h4></div> --}}
+   <table class=" light-green lighten-2 blue-text text-darken-2 striped ">
        <thead class="teal-text darken-3">
            
            <tr>
@@ -22,19 +26,15 @@
                <td><span>{{url}}</span></td>
 
             </tr>
-        </div>
-     </div>
 
          {{/each}}
         
 
 {{else}}
 {{/if}}
-       <div class="row">
-        <a class="waves-effect waves-light btn" href="/"> Go back to home </a>
-       </div>
+    </div>
 
 
-
+</div>
 
 </div>

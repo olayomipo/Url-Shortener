@@ -3,11 +3,16 @@
   <head>
     <meta charset="utf-8">
     <title>Error 505</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <meta name="author" content="Morpheus">
-    <meta name="copyright" content="2018, Morpheus">
-    <meta name="keywords" content="500, page">
-    <meta name="description" content="error 500 page">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+     integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" 
+     crossorigin="anonymous" 
+     referrerpolicy="no-referrer" />
     <style media="screen">
 
       *{
@@ -120,7 +125,7 @@
         
        
       </div>
-      <a href="/home" class="btn"> Go Back to Home</a>
+      <a href="/" class="btn"> Go Back to Home</a>
       <script>
             function reveal() {
                 document.getElementById('msg').style.display = 'block';
@@ -131,4 +136,21 @@
         </script>
     </div>
   </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="//cdn.ckeditor.com/4.16.1/full/ckeditor.js"></script>
+  
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  
+  <script>
+      
+
+      M.Sidenav.init(document.querySelector('.sidenav'))
+      M.FormSelect.init(document.querySelector('#status'))
+
+      CKEDITOR.replace('body', {
+          plugins: 'wysiwygarea , toolbar, basicstyles, link'
+      })
+
+  </script>
 </html>

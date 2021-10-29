@@ -23,7 +23,7 @@ app.get('/:alias', asyncMiddleware(GetUrlALias))
 // app.put('/:alias', PutUrlAlias)
 // app.delete('/:alias', DeleteUrlAlias)
 
-app.use(asyncMiddleware(favicon(path.join(__dirname, '../public','images', 'favicon.ico'))))
+app.use(favicon(path.join(__dirname, '../public','images', 'favicon.ico')))
 
 
   // Hamdlebars helpers

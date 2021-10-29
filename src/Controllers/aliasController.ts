@@ -1,13 +1,14 @@
 
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import Url from "../db";
+import path from 'path';
 
 // - @GET - /url get all urls and alias 
 
-export let GetUrl = async (req: Request, res: Response) => {
+export let GetUrl = async (req: Request, res: Response, next: NextFunction) => {
     
     try {
-        const uri: any = await Url.find().lean()
+        const uri: any = await Url.find().sort('-createdAt').lean()
         res.render('page/Urls', { uri })
 
     } catch (err) {
@@ -20,26 +21,27 @@ export let GetUrl = async (req: Request, res: Response) => {
 
 // - @GET - /home make a new url with auto generated alias
 
-export let GetHome = async (req: Request, res: Response) => {
+export let GetHome = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        res.render('page/Home')
+        res.sendFile(path.join(__dirname + '../../../views/page/Home.html'))
+        // if url doesnt follow format of https://google.com and is instead google.com .
+        //return error through joi
 
     } catch (err) {
 
         console.error(err)
-        res.render('err/500')
+        res.sendFile(path.join(__dirname + '../../../views/err/500.html'))
     }
    
 }
 // -@POST -/ post a new alias and get a new url
-export let PostUrl = async (req: Request, res: Response) => {
+export let PostUrl = async (req: Request, res: Response, next: NextFunction) => {
 
-    let pagelink: any = 'https://lowurl.herokuapp.com/'
 
 
     try {
         let uri: any = await Url.create(req.body)
-        res.render('page/Created', { pagelink, uri })
+        res.render('page/Created', { uri })
         
     } catch (err ) {
         res.render('err/400C', { 
@@ -49,12 +51,13 @@ export let PostUrl = async (req: Request, res: Response) => {
    }
 }
 // -@GET -/:alias get a url by alias
-export let GetUrlALias = async (req: Request, res: Response) => {
+export let GetUrlALias = async (req: Request, res: Response, next: NextFunction) => {
     try {
         let url: any = await Url.findOne({ alias: req.params.alias });
 
         if (!url) {
-            res.render('err/404')
+            res.sendFile(path.join(__dirname + '../../../views/err/404.html'))
+
         } else {
              const suburi: any = url.url 
                 res.redirect(suburi)
@@ -62,7 +65,8 @@ export let GetUrlALias = async (req: Request, res: Response) => {
          }
     } catch (err) {
         console.error(err)
-        res.render('err/500')
+        res.sendFile(path.join(__dirname + '../../../views/err/500.html'))
+
     }
 
 }
