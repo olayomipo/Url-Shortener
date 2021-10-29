@@ -19,7 +19,7 @@ export let GetUrl = async (req: Request, res: Response, next: NextFunction) => {
    
 }
 
-// - @GET - /home make a new url with auto generated alias
+// - @GET - / make a new url with auto generated alias
 
 export let GetHome = async (req: Request, res: Response, next: NextFunction) => {
     try {

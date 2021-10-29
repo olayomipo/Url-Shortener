@@ -5,12 +5,12 @@ const url = "mongodb://localhost:27017/Url_Shortener";
 const uri = "mongodb+srv://Lily-Crown999:Lily-Crown999@cluster0.ynj90.mongodb.net/Url-Shortenerz?retryWrites=true&w=majority"
 
 export function connectDB() {
-        mongoose.connect(url, (err) => {
+        mongoose.connect(uri, (err) => {
             if (err) {
                 console.log(err.message);
             }
             else {
-                console.log(`Successfully Connected! at %s`, url);
+                console.log(`Successfully Connected! at %s`, uri);
             }
         });
 }
