@@ -5,7 +5,7 @@
   "main": " src/app.ts",
   "scripts": {
     "watch-ts": "tsc -w",
-    "start": "ts-node src/app.ts"
+    "start": "ts-node src/index.ts"
   },
   "keywords": [],
   "author": "",
