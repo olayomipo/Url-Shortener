@@ -1,8 +1,8 @@
 {
   "name": "url_shortener",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "url_shortener",
-  "main": " ../src",
+  "main": " src/app.ts",
   "scripts": {
     "watch-ts": "tsc -w",
     "start": "ts-node src/app.ts"

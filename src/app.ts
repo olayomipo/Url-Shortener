@@ -9,6 +9,7 @@ connectDB()
 const app: any = express()
 
 // Our Express APP config
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false}))
 
