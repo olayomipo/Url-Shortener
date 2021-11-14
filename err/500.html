@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Error 505</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+     integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" 
+     crossorigin="anonymous" 
+     referrerpolicy="no-referrer" />
+    <style media="screen">
+
+      *{
+        margin:0;
+        padding:0;
+      }
+      body{
+        text-align: center;
+        font-family: 'Shrikhand', cursive;
+      }
+      .container{
+        /* background: linear-gradient(225deg,  #fff, #215); */
+        height:100vh;
+        width: 100vw;
+        background: url("https://media.giphy.com/media/2lx83o4ZJIxYA/giphy.gif");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+      }
+      h1{
+        background: rgba(200, 74, 74, 0.7);
+        background: url('https://media.giphy.com/media/3o7buijTqhjxjbEqjK/giphy.gif');
+        background-attachment: fixed;
+        border-bottom: 20px inset #314;
+        border-radius: 50%;
+        margin-left: 30px;
+        margin-right: 30px;
+        font-size: 80px;
+        font-weight: bolder;
+        letter-spacing: 10px;
+        padding-top: 20vh;
+      }
+      .heading{
+        color: rgba(248, 239, 239, 0.3);
+        background-clip:text;
+        -webkit-background-clip: text;
+      }
+      .brokenHinge{
+        display: inline-block;
+        transform-origin: 0% 100%;
+        color: rgb(65, 27, 231);
+        animation: brokenHinge 1.5s linear 1s forwards;
+      }
+      .textMessage{
+        margin-top: 20vh;
+        font-weight: lighter;
+        padding: 20px;
+        color: rgb(252, 180, 180);
+
+      }
+      .tryAgain{
+        margin-top: 10px;
+        color: rgb(252, 180, 180);
+      }
+      .button {
+        border: 2px solid white;
+        padding: 5px;
+        border-radius: 6px;
+        background-color: red;
+        color: white;
+        transition: all 0.1s linear;
+        margin-top: 5px;
+      }
+
+      .button:hover {
+        background-color: rgb(255, 50, 50);
+      }
+
+      .button:active {
+        background-color: rgb(255, 100, 100);
+        margin-top: 7px;
+        padding: 3px;
+}
+
+
+      /*@keyframes brokenHinge {
+        0%{transform: rotate(0deg);}
+        25%{transform: rotate(30deg);}
+        50%{transform: rotate(60deg);}
+        70%{transform: rotate(90deg);}
+        80%{transform: rotate(120deg);}
+        90%{transform: rotate(150deg);}
+        100%{transform: rotate(170deg);}
+      }*/
+      
+      @keyframes brokenHinge {
+        0%{transform: rotate(0deg);}
+        25%{transform: rotate(30deg);}
+        50%{transform: rotate(60deg);}
+        70%{transform: rotate(90deg);}
+        80%{transform: rotate(120deg);}
+        90%{transform: rotate(150deg);}
+        100%{transform: rotate(170deg);}
+
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="heading">50<span class="brokenHinge">0</span></h1>
+      <div class="textMessage">
+        We're Sorry! Something went wrong this time from Us
+        <div class="tryAgain">
+          Try again later!
+        </div>
+        <p>Sorry, but we won't give you the details, because you can explore our secure and protected code with this message. It's the server's fault.</p>
+        <button id='getd' onclick='reveal()'>Get the details</button>
+        
+        <p id="msg" style='display: none'>Our secret password to delete all of our files  is urls.io! <br /> <button onclick='delete_()'>Delete them now!</button></p>
+        
+       
+      </div>
+      <a href="/" class="btn"> Go Back to Home</a>
+      <script>
+            function reveal() {
+                document.getElementById('msg').style.display = 'block';
+            }
+            function delete_() {
+                document.getElementById('msg').innerHTML = 'You thought it\'s so easy? 🤣';
+            }
+        </script>
+    </div>
+  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="//cdn.ckeditor.com/4.16.1/full/ckeditor.js"></script>
+  
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  
+  <script>
+      
+
+      M.Sidenav.init(document.querySelector('.sidenav'))
+      M.FormSelect.init(document.querySelector('#status'))
+
+      CKEDITOR.replace('body', {
+          plugins: 'wysiwygarea , toolbar, basicstyles, link'
+      })
+
+  </script>
+</html>

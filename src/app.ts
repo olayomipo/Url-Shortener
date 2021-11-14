@@ -1,10 +1,7 @@
 
 import express  from 'express'
-import exphbs from 'express-handlebars'
 import { connectDB } from './db'
-import { GetHome, GetUrl, PostUrl, GetUrlALias } from './Controllers/aliasController'
-import favicon from 'serve-favicon'
-import path from 'path'
+import { GetUrl, PostUrl, GetUrlALias, error404, error500 } from './Controllers/aliasController'
 import { asyncMiddleware } from "./middleware/async";
 
 connectDB()
@@ -16,33 +13,18 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false}))
 
 //Routes
-app.get('/', asyncMiddleware(GetHome));
+
 app.get('/urls', asyncMiddleware(GetUrl));
-app.post('/', asyncMiddleware(PostUrl));
+app.post('/url', asyncMiddleware(PostUrl));
 app.get('/:alias', asyncMiddleware(GetUrlALias))
+
+//Error redirect routes
+
+app.get('/404', asyncMiddleware(error404))
+app.get('/500', asyncMiddleware(error500))
+
 // app.put('/:alias', PutUrlAlias)
 // app.delete('/:alias', DeleteUrlAlias)
-
-app.use(favicon(path.join(__dirname, '../public','images', 'favicon.ico')))
-
-
-  // Hamdlebars helpers
-import {
-  formatDate,
-  truncate,
-  stripTags
-
-} from './helpers/hbs'
-
-//Handlebars 
-app.engine('.hbs', exphbs({ 
-  helpers: {
-    formatDate,
-    truncate,
-    stripTags
-  },defaultLayout : 'main', extname: '.hbs' }));
-
-app.set('view engine', '.hbs');
 
 
 

@@ -1,10 +1,10 @@
 
-import { NextFunction, Request, Response } from "express";
+import { Response, Request, NextFunction } from "express";
 
 
-export function asyncMiddleware(handler: any) {
+export function asyncMiddleware (handler) {
 
-    return async (req: Request, res: Response, next: NextFunction) => {
+    return async (req: Request, res: Response, next:NextFunction) => {
         try{
             await handler(req, res);
         }
@@ -13,4 +13,3 @@ export function asyncMiddleware(handler: any) {
         }
     };
 }   
-
