@@ -1,7 +1,8 @@
 
 import { NextFunction, Request, Response } from "express";
 import Url from "../db";
-import path from 'path';
+
+
 // - @GET - /url get all urls and alias 
 
 export let GetUrl = async (req: Request, res: Response, next: NextFunction) => {
@@ -14,7 +15,8 @@ export let GetUrl = async (req: Request, res: Response, next: NextFunction) => {
     } catch (err) {
         
         console.error(err)
-        res.redirect('/500')
+        res.status(500).send('Error 500 Server Error 😰🤧😭 ')
+
     }
    
 }
@@ -30,7 +32,8 @@ export let PostUrl = async (req: Request, res: Response, next: NextFunction) => 
            
     } catch (err ) {
         console.error(err)
-        res.redirect('/500')
+        res.status(500).send('Error 500 Server Error 😰🤧😭 ')
+
 
    }
 }
@@ -40,31 +43,18 @@ export let GetUrlALias = async (req: Request, res: Response, next: NextFunction)
         let url: any = await Url.findOne({ alias: req.params.alias });
 
         if (!url) {
-            res.redirect('/404')
+            res.status(404).send('Error 404 The url with the given Alias was not found ! 😅😥')
 
         } else {
             res.send(url)
          }
     } catch (err) {
         console.error(err)
-        // res.sendFile(path.join(__dirname + '../../../views/err/500.html'))
-        res.redirect('/500')
+        res.status(500).send('Error 500 Server Error 😰🤧😭 ')
         res.send(err)
 
     }
 
-}
-
-
-// -@GET -/404 get a status 404 error html page
-export let error404 = async (req: Request, res: Response) => {
- res.sendFile(path.join(__dirname + '../../../err/404.html'))
-}
-
-
-// -@GET -/500 get a  status 500 error html page
-export let error500 = async (req: Request, res: Response) => {
-    res.sendFile(path.join(__dirname + '../../../err/500.html'))
 }
    
 
