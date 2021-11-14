@@ -15,8 +15,8 @@ app.use(express.urlencoded({ extended: false}))
 
 //Routes
 
-app.get('/urls', asyncMiddleware(GetUrl));
-app.post('/url', asyncMiddleware(PostUrl));
+app.get('/', asyncMiddleware(GetUrl));
+app.post('/', asyncMiddleware(PostUrl));
 app.get('/:alias', asyncMiddleware(GetUrlALias))
 
 
