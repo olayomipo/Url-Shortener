@@ -8,7 +8,7 @@ import Url from "../db";
 export let GetUrl = async (req: Request, res: Response, next: NextFunction) => {
     
     try {
-        const uri: any = await Url.find().sort('-createdAt').lean()
+        const uri: any = await Url.find().sort('-createdAt');
         // res.render('page/Urls', { uri })\
         res.send(uri)
 
@@ -31,9 +31,9 @@ export let PostUrl = async (req: Request, res: Response, next: NextFunction) => 
             res.send(uri)
            
     } catch (err ) {
+
         console.error(err)
         res.status(500).send('Error 500 Server Error 😰🤧😭 ')
-
 
    }
 }
@@ -49,10 +49,10 @@ export let GetUrlALias = async (req: Request, res: Response, next: NextFunction)
             res.send(url)
          }
     } catch (err) {
+
         console.error(err)
         res.status(500).send('Error 500 Server Error 😰🤧😭 ')
-        res.send(err)
-
+        
     }
 
 }
