@@ -9,16 +9,14 @@ connectDB()
 const app: any = express()
 
 // Our Express APP config
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: false}))
 
 //Routes
-
-app.get('/', asyncMiddleware(GetUrl));
-app.post('/', asyncMiddleware(PostUrl));
+app.get('', asyncMiddleware(GetUrl));
+app.post('', asyncMiddleware(PostUrl));
 app.get('/:alias', asyncMiddleware(GetUrlALias))
-
+app.get('/favicon.ico', ( req: Request , res: Response) => { console.log('/favicon.ico:1 ')} )
 
 // app.put('/:alias', PutUrlAlias)
 // app.delete('/:alias', DeleteUrlAlias)
