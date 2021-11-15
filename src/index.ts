@@ -13,10 +13,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false}))
 
 //Routes
+app.get('/', GetUrl);
+app.post('/', PostUrl);
+app.get('/:alias', GetUrlALias)
 
-app.get('/:alias', asyncMiddleware(GetUrlALias))
-app.get('/', asyncMiddleware(GetUrl));
-app.post('/', asyncMiddleware(PostUrl));
 // app.put('/:alias', PutUrlAlias)
 // app.delete('/:alias', DeleteUrlAlias)
 
