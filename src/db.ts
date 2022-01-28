@@ -11,7 +11,7 @@ export function connectDB() {
                 console.log(err.message);
             }
             else {
-                console.log(`Successfully Connected! at %s`, uri);
+                console.log(`Successfully Connected! at %s`, url);
             }
         });
 }

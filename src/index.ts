@@ -1,7 +1,7 @@
 
 import express  from 'express'
 import { connectDB } from './db'
-import { GetUrl, PostUrl, GetUrlALias } from './Controllers/aliasController'
+import { GetUrl, PostUrl, GetUrlALias, GetUrlALiasAndNav } from './Controllers/aliasController'
 
 connectDB()
 
@@ -19,7 +19,9 @@ app.use(express.urlencoded({ extended: false}))
 //Routes
 app.get('/', GetUrl);
 app.post('/', PostUrl);
-app.get('/:alias', GetUrlALias)
+app.get('/Q/:alias', GetUrlALias)
+app.get('/:alias', GetUrlALiasAndNav)
+
 
 // app.put('/:alias', PutUrlAlias)
 // app.delete('/:alias', DeleteUrlAlias)

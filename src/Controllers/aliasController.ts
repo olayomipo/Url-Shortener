@@ -10,12 +10,12 @@ export let GetUrl = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const uri: any = await Url.find().sort('-createdAt');
         // res.render('page/Urls', { uri })\
-        res.send(uri)
+        res.json(uri)
 
     } catch (err) {
         
         console.error(err)
-        res.status(500).send('Error 500 Server Error 😰🤧😭 ')
+        res.status(500).json('Error 500 Server Error 😰🤧😭 ')
 
     }
    
@@ -28,30 +28,52 @@ export let PostUrl = async (req: Request, res: Response, next: NextFunction) => 
     try {
         let uri: any = await Url.create(req.body)
 
-            res.send(uri)
+            res.json(uri)
            
     } catch (err ) {
 
         console.error(err)
-        res.status(500).send('Error 500 Server Error 😰🤧😭 ')
+        res.status(500).json('Error 500 Server Error 😰🤧😭 ')
 
    }
 }
-// -@GET -/:alias get a url by alias
+
+// -@GET -/:alias get a url by alias and other info on url 
 export let GetUrlALias = async (req: Request, res: Response, next: NextFunction) => {
     try {
         let url: any = await Url.findOne({ alias: req.params.alias });
 
         if (!url) {
-            res.status(404).send('Error 404 The url with the given Alias was not found ! 😅😥')
+            res.status(404).json('Error 404 The url with the given Alias was not found ! 😅😥')
 
         } else {
-            res.send(url)
+            res.json(url)
          }
     } catch (err) {
 
         console.error(err)
-        res.status(500).send('Error 500 Server Error 😰🤧😭 ')
+        res.status(500).json('Error 500 Server Error 😰🤧😭 ')
+        
+    }
+
+}
+
+
+// -@GET -/:alias get a url by alias and redirect
+export let GetUrlALiasAndNav = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        let url: any = await Url.findOne({ alias: req.params.alias });
+
+        if (!url) {
+            res.status(404).json('Error 404 The url with the given Alias was not found ! 😅😥')
+
+        } else {
+            res.redirect(url.url)
+         }
+    } catch (err) {
+
+        console.error(err)
+        res.status(500).json('Error 500 Server Error 😰🤧😭 ')
         
     }
 
@@ -65,9 +87,9 @@ export let GetUrlALias = async (req: Request, res: Response, next: NextFunction)
 //         let url: any = await Url.findOneAndUpdate({ alias: req.params.alias} ,
 //             { url: req.body.url , name: req.body.name }, { new: true } );
 //         if (!url) {
-//             res.status(404).send('There is no url with the given alias')
+//             res.status(404).json('There is no url with the given alias')
 //         } else {
-//             res.send(url)
+//             res.json(url)
 //             // const suburi: any = url.url 
 //             // res.redirect(suburi)
 //         }
@@ -75,7 +97,7 @@ export let GetUrlALias = async (req: Request, res: Response, next: NextFunction)
 //     } catch (err: any) {
 //         console.error(err)
 //         // err.details[0].message
-//         res.status(500).send(err)
+//         res.status(500).json(err)
 //     }
 // }
 
@@ -85,12 +107,12 @@ export let GetUrlALias = async (req: Request, res: Response, next: NextFunction)
 //         let url: any = await Url.findOneAndDelete({ alias: req.params.alias})
 
 //         if (!url) {
-//             res.status(404).send('The movie with the given alais was not found...');
+//             res.status(404).json('The movie with the given alais was not found...');
 //         } else {
-//         res.send(url)
+//         res.json(url)
 //         }
 //     } catch (err) {
 //         console.error(err)
-//         res.status(500).send(err)
+//         res.status(500).json(err)
 //     }
 // }
