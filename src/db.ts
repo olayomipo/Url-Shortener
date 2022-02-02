@@ -11,12 +11,13 @@ export function connectDB() {
                 console.log(err.message);
             }
             else {
-                console.log(`Successfully Connected! at %s`, url);
+                console.log(`Successfully Connected! at %s`, uri);
             }
         });
 }
 
 export const UrlSchema = new mongoose.Schema({
+    uri: { type: String, required: false, default: "http://uriurl.herokuapp.com/"},
     name: { type: String, required: true},
     url: { type: String, required: true },
     alias: { type: String, required: false, default: () => nanoid(5) },
