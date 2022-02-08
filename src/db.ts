@@ -16,9 +16,11 @@ export function connectDB() {
         });
 }
 
+
+
 export const UrlSchema = new mongoose.Schema({
     uri: { type: String, required: false, default: "http://uriurl.herokuapp.com/"},
-    name: { type: String, required: true},
+    name: { type: String, required: false, default: "---"},
     url: { type: String, required: true },
     alias: { type: String, required: false, default: () => nanoid(5) },
   }, { timestamps: true });
